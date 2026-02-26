@@ -7,19 +7,19 @@ load_dotenv()
 
 app = FastAPI(title="AI Telugu Movie Generator")
 
-# client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
-)
+# client = OpenAI(
+#     base_url="https://openrouter.ai/api/v1",
+#     api_key=os.getenv("OPENROUTER_API_KEY"),
+# )
 
 @app.get("/random-telugu-movie")
 def get_random_telugu_movie():
     prompt = "Give me only one random popular Telugu movie name with atmost ten(10) letters only. Only the movie name. No explanation."
 
     response = client.chat.completions.create(
-        model="nvidia/nemotron-3-nano-30b-a3b:free",
+        model="gpt-4o-mini",
         messages=[
             {"role": "user", "content": prompt}
         ],
